@@ -1,24 +1,26 @@
----
+--- 
 interface Props {
 	title: string;
 }
 
 const { title } = Astro.props;
+import FirstView from '../components/FirstView.astro';
+import Bg from '../components/Bg.astro';
+import Intro from '../components/Intro.astro'
+import Me from '../components/Me.astro';
+
 ---
 
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ja">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Astro description">
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="stylesheet", href='https://unpkg.com/ress/dist/ress.min.css'> 
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
-
 		<!-- Reset CSS -->
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js" integrity="sha512-M7uzkKVt12bO/ClDOwaTk0AUwDPmJzjxri/KQKft2cisI6q3zJ4KxX3IfSQXF9Z6WU6NNW67JAljgWrA4WiiOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		 -->
@@ -28,7 +30,10 @@ const { title } = Astro.props;
 		<script src="../scripts/sketch.js"></script>
 	</head>
 	<body>
-		<slot />
+		<Bg> </Bg>
+		<FirstView> </FirstView>
+		<Intro></Intro>
+		<Me></Me>
 	</body>
 </html>
 <style is:global>
@@ -36,26 +41,44 @@ const { title } = Astro.props;
 		--accent: 136, 58, 234;
 		--accent-light: 224, 204, 250;
 		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
 	}
 	html {
-		font-family: "Noto Sans JP", sans-serif;
-		background: #17212B;
+		font-family: system-ui, sans-serif;
+		background-size: 224px;
 	}
 	body {
 
+		background: linear-gradient(#00ABEB, #FF53EC);
+		color: white;
 		width: 100svw;
-		height: 100svh;
 	}
 	code {
-
+		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
+			Bitstream Vera Sans Mono, Courier New, monospace;
 	}
-	a {
-		color: #FF53EC;
+	canvas {
+		display: block;
+		width: 100svw;
+		height: 100svh;
+		margin: 0;
+		padding: 0;
+		/*opacity: 0.5;*/
+	}
+	.c-inner {
+		width: 1280px;
+		margin: auto;
+	}
+	.c-inner.glassBG {
+		background: rgba( 255, 255, 255, 0.15 );
+        box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.20 );
+        backdrop-filter: blur( 4px );
+        -webkit-backdrop-filter: blur( 4px );
+        border-radius: 10px;
+        border: 1px solid rgba( 255, 255, 255, 0.4 );
+		padding: 4rem
 	}
 </style>
+
+<script>
+</script>
