@@ -78,10 +78,11 @@ let rotateSpeed;
 
 let sketch = function (p) {
   let dots = [];
-  const numOfDots = 50;
+  const numOfDots = 14;
 
-  p.setup = function () {
-    p.createCanvas(4096, 2160);
+  p.setup = function () {    
+    p.createCanvas(p.windowWidth, p.windowHeight);
+    p.rectMode(p.CENTER);
     p.noStroke();
     for (let i = 0; i < numOfDots; i++) {
       dots.push(new Dot(p.random(p.width), p.random(p.height)));
@@ -96,6 +97,9 @@ let sketch = function (p) {
       dot.update();
       dot.display();
     }
+  };
+  p.windowResized = function() {
+    p.resizeCanvas(p.windowWidth, p.windowHeight);
   };
 
   class Dot {
@@ -121,6 +125,7 @@ let sketch = function (p) {
       }
     }
   }
+  
 };
 
 new p5(sketch, "node__1");
