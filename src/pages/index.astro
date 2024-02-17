@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 // import ImgOpt from '../components/ImgOpt.astro';
 import Bg from '../components/Bg.astro';
+import { Image } from 'astro:assets';
+import icon from '../imgs/photo.png';
 ---
 
 <Layout title="石田 一樹 / Ishida Kazuki">
@@ -10,6 +12,11 @@ import Bg from '../components/Bg.astro';
 		<!-- <ImgOpt /> -->
 		<a href="https://twitter.com/kazukiatjp" class="x-link">Ishida Kazuki@X</a>
 		<Bg />
+		<!-- <Image src={icon} 
+		width="124"
+		height="124"
+		alt="石田一樹 / Ishida Kazuki" format="jpeg"
+		/> -->
 	</main>
 </Layout>
 
