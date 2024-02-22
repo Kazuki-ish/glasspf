@@ -1,0 +1,81 @@
+---
+import { Image } from 'astro:assets';
+import Icon from '../imgs/photo.png';
+import GitHub from '../imgs/github-mark-white.png';
+import X from '../imgs/x-logo-white.png';
+---
+
+<p class="about__name">石田 一樹 / Ishida Kazuki</p>
+<Image src={Icon}
+    width="124"
+    height="124"
+    alt="石田一樹 / Ishida Kazuki" format="jpeg"
+    class="about__icon c-visible-nrw"
+/>
+
+<div class="about__wrapper">
+    <div class="about__txt">
+        <p>4月2日生まれ。<br>幼少期、友人に「あした誕生日」と喧伝するも、前日がエイプリルフールであったため、誰にも信じてもらえない環境で育つ。</p>
+        <p>小学5年生で初めてのPC、WindowsVistaに触れる。</p>
+    </div>
+    <Image src={Icon}
+        width="124"
+        height="124"
+        alt="石田一樹 / Ishida Kazuki" format="jpeg"
+        class="about__icon c-visible-wide"
+    />
+</div>
+<div class="about__links">
+    <a href="https://github.com/Kazuki-ish" class="about__links__ico -github">
+        <Image src={GitHub}
+        height="36"
+        alt="githubリンク / 石田一樹" format="png"
+    />
+    </a>
+    <a href="https://twitter.com/kazukiatjp" class="about__links__ico -x">
+        <Image src={X}
+        height="32"
+        alt="Xリンク / 石田一樹" format="png"
+    />
+    </a>
+</div>
+
+<style lang="scss">
+    .about__name {
+        margin-top: 1rem;
+        line-height: 1rem;
+        text-align: center;
+    }
+    .about__wrapper {
+        align-items: center;
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        gap: 2rem;
+    }
+    .about__txt {
+        // max-width: calPer(480, 668);
+
+    }
+    .about__icon {
+        border-radius: 9999px;
+
+        &.c-visible-nrw {
+            margin: 2rem auto 2rem;;
+        }
+    }
+    .about__links {
+        margin-top:1rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 2rem;
+    }
+    .about__links__ico {
+        display: block;
+
+        img {
+            width: auto;
+        }
+    }
+</style>

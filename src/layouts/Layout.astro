@@ -10,7 +10,7 @@ const { title } = Astro.props;
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="石田一樹の個人サイト" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="stylesheet", href='https://unpkg.com/ress/dist/ress.min.css'> 
@@ -24,6 +24,17 @@ const { title } = Astro.props;
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.js" integrity="sha512-M7uzkKVt12bO/ClDOwaTk0AUwDPmJzjxri/KQKft2cisI6q3zJ4KxX3IfSQXF9Z6WU6NNW67JAljgWrA4WiiOA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>		 -->
 		<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js" integrity="sha512-bcfltY+lNLlNxz38yBBm/HLaUB1gTV6I0e+fahbF9pS6roIdzUytozWdnFV8ZnM6cSAG5EbmO0ag0a/fLZSG4Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
 		
+
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-3T1SCGYWWG"></script>
+		<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'G-3T1SCGYWWG');
+
+		</script>
 		<!-- p5.js -->
 		<script src="../scripts/sketch.js"></script>
 	</head>
@@ -31,31 +42,35 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
-<style is:global>
+<style lang="scss" is:global>
 	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 60%
-		);
+
 	}
 	html {
 		font-family: "Noto Sans JP", sans-serif;
 		background: #17212B;
 	}
 	body {
-
-		width: 100svw;
-		height: 100svh;
+		position: relative;
+		max-width: 100svw;
+		// max-height: 100svh;
+		
+		&.-modal {
+			overflow: hidden;
+		}
 	}
 	code {
 
 	}
 	a {
 		color: #FF53EC;
+		text-decoration: none;
+	}
+	img {
+		display: block;
+		max-width: 100%;
+	}
+	ul {
+		list-style: none;
 	}
 </style>

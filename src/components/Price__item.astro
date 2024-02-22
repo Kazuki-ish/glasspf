@@ -1,0 +1,54 @@
+---
+interface Item {
+  id: string;
+  name: string;
+  price: number;
+  desc: string;
+  schedule: string;
+  isBasic: boolean;
+}
+
+const item = Astro.props.item as Item;
+
+const price = new Intl.NumberFormat('en-US').format(item.price)
+---
+<div class="price__ttl">
+    <p class="price__name">{item.name}</p>
+    <p class="price__price">{price == 20 ? (`${price}%〜`) : (`¥${price}〜`) }</p>
+    <p class="price__schedule">{item.schedule}</p>
+</div>
+<div class="price__desc" set:html={item.desc}></div>
+
+<style lang="scss">
+    .price__ttl {
+        background-color: rgba(58, 201, 189, .8);
+        backdrop-filter: blur(12px);
+        border: solid 1px rgba(58, 201, 189, .4);
+        display: grid;
+        grid-template-columns: 3fr 1fr 1fr;
+        padding: calRem(4) 1rem;
+        grid-column-gap: 2rem;
+        margin-top: .5rem;
+
+        p {
+            line-height:calRem(22);
+        }
+        &:nth-of-type(n + 2) {
+            margin-top: 2rem;
+            height: calc(24px + 8px + 2px);
+        }
+        .-option & {
+            background-color: rgba(255, 0, 227, .6);
+            border: solid 1px rgba(255, 0, 227, .4);
+        }
+    }
+    .price__name {
+        font-size: calRem(20);
+    }
+    .price__price {
+        font-size: calRem(22);
+    }
+    .price__desc {
+        padding: 0 1rem;
+    }
+</style>

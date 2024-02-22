@@ -1,0 +1,47 @@
+@use "sass:math";
+
+@function calRem($ammount){
+    @return math.div($ammount, 16) * 1rem;
+}
+
+@function calVw($ammount, $size: 390) {
+    @return math.div($ammount, $size) * 100vw;
+}
+
+@function calPer($ammount, $size: 100) {
+  @return math.div($ammount, $size) * 100%;
+} 
+@mixin absCenter{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+}
+
+@mixin glassBg {
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 16px;
+  box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5.8px) brightness(2);
+  -webkit-backdrop-filter: blur(5.8px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+@mixin shadowTxt {
+  color: white;
+  filter: drop-shadow(3px 3px 6px rgba(0, 0, 0, .5));
+}
+@mixin accAnim($prop: height, $time: .4s ){
+    transition: $time cubic-bezier(.79,.21,.06,.81);
+}
+
+$breakpoint: (
+  sp: 'screen and (max-width: 767px)',
+  tab: 'screen and (min-width: 768px)',
+  pc: 'screen and (min-width: 1025px)'
+);
+
+@mixin mq($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+   @content;
+  }
+}

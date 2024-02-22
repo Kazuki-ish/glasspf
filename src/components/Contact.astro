@@ -1,0 +1,51 @@
+---
+---
+<div class="contact">
+    <p class="contact__txt">
+        お問い合わせ、ご相談はこちらからお願いいたします。
+    </p>
+    <a href="https://forms.gle/cxdvP2rRMuP3mmyW6" class="contact__btn" target="_blank">
+        <p>Contact me</p>
+    </a>
+</div>
+
+
+<style lang="scss">
+    .contact {
+        text-align:center;
+    }
+    .contact__txt {
+        margin-top: calRem(12);
+        font-size: calRem(20);
+    }
+    .contact__btn {
+        @include accAnim;
+        background-color: rgba(255, 255, 255, .3);
+        backdrop-filter: blur(12px);
+        border: solid 1px white;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 375px;
+        margin: calRem(24) auto 0;
+        
+        &:hover {
+                background-color: rgba(255, 255, 255, .6);
+                box-shadow: 0 0 8px rgba(255, 255, 255, .8);
+            }
+        p {
+            @include accAnim;
+            padding: calRem(18) 0;
+            display: inline-block;
+            color: white;
+            font-size: calRem(22);
+            line-height: 1;
+            &:hover {
+                filter: drop-shadow(0 0 8px rgba(255, 255, 255, .8));
+            }
+        }
+        &:hover {
+        }
+    }
+</style>

@@ -2,30 +2,62 @@
 import Layout from '../layouts/Layout.astro';
 // import ImgOpt from '../components/ImgOpt.astro';
 import Bg from '../components/Bg.astro';
-import { Image } from 'astro:assets';
-import icon from '../imgs/photo.png';
+import Header from'../components/Header.astro';
+import Works from '../components/Works.astro';
+import About from '../components/About.astro';
+import Price from '../components/Price.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import Modal from '../components/Modal.astro';
+import Scroll from "../components/ScrollModule.astro";
+
+const navItems = ["About me", "Works", "Price", "Contact"]
 ---
 
 <Layout title="石田 一樹 / Ishida Kazuki">
 	<main>
-		<h1> 改装準備中……</h1>
+		<Header items = {navItems as Array} />
+		<!-- <h1> 改装準備中……</h1> -->
 		<!-- <ImgOpt /> -->
-		<a href="https://twitter.com/kazukiatjp" class="x-link">Ishida Kazuki@X</a>
+		<!-- <a href="https://twitter.com/kazukiatjp" class="x-link">Ishida Kazuki@X</a> -->
 		<Bg />
-		<!-- <Image src={icon} 
-		width="124"
-		height="124"
-		alt="石田一樹 / Ishida Kazuki" format="jpeg"
-		/> -->
+		<section class="About" id={navItems[0]}>
+			<div class="c-inner -small">
+				<h2 class=About__ttl>{navItems[0]}</h2>
+				<About />
+			</div>
+		</section>
+		<section class="Works" id={navItems[1]}>
+			<div class="c-inner">
+				<h2 class=Works__ttl>{navItems[1]}</h2>
+				<Works />
+			</div>
+		</section>
+		<!-- <section class="Price" id={navItems[2]}>
+			<div class="c-inner">
+				<h2 class=Price__ttl>{navItems[2]}</h2>
+				<Price />
+			</div>
+		</section> -->
+		<section class="Contact" id={navItems[3]}>
+			<div class="c-inner -small">
+				<h2 class=Contact__ttl>{navItems[3]}</h2>
+				<Contact />
+			</div>
+		</section>
+		<Footer />
+		<Modal />
+		<Scroll />
 	</main>
 </Layout>
 
-<style>
+<style lang="scss" is:global>
 	main {
-		margin: auto;
+		margin: 0;
 		color: white;
-		font-size: 20px;
-		line-height: 1.6;
+		position: relative;
+		width: 100%;
+		overflow: hidden;
 	}
 	h1 {
 		font-size: 2rem;
@@ -48,4 +80,58 @@ import icon from '../imgs/photo.png';
 		letter-spacing: .025em;
 		z-index: 999;
 	}
+	section{
+		max-width: 1344px;
+		margin: 0 auto;
+
+		&:nth-of-type(n + 2) {
+			margin-top: 3rem;
+		}
+		h2 {
+			font-size: calRem(22);
+			font-weight: 400;
+			filter: drop-shadow(0 0 6px rgba(255, 255, 255, .54));
+			text-align: center;
+			line-height:1;
+		}
+	}
+	.c-inner {
+		@include glassBg();
+		padding: calRem(16) calRem(32) calRem(38);
+		margin: auto;
+		
+		@include mq(sp) {
+				max-width: calc(100svw - 2rem);
+		}
+
+		&.-small {
+			max-width: 668px;
+			margin: auto;
+			@include mq(sp) {
+				max-width: calc(100svw - 2rem);
+			}
+		}
+	}
+	section.About {
+		margin-top: calVw(783, 1920);
+
+		@include mq(sp) {
+				margin-top: calVw(560);
+		}
+	}
+
+	.c-visible-nrw {
+		@include mq(tab) {
+			display: none;
+			visibility: hidden;
+		}
+		
+	}
+	.c-visible-wide {
+		@include mq(sp) {
+			display: none;
+			visibility: hidden;
+		}
+	}
+
 </style>

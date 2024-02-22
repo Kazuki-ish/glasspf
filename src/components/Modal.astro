@@ -1,0 +1,82 @@
+---
+
+---
+
+<div class="modal" id="js-modal"></div>
+
+<style lang="scss">
+    .modal {
+      @include accAnim;
+      @include absCenter;
+      background-color: rgba(0, 0, 0, 0);
+      visibility: hidden;
+      opacity: 0;
+      z-index: 999;
+      backdrop-filter: blur(0px);
+      position: fixed;
+      width: 100svw;
+      height: 100svh;
+  
+      &.-active {
+        visibility: visible;
+        opacity: 1;
+        backdrop-filter: blur(12px);
+      }
+  
+      .works__txt {
+          position: relative;
+      }
+      
+    }
+</style>
+<script>
+  const $btns = document.querySelectorAll(".js-modal-btn");
+  const body = document.getElementsByTagName("body");
+  const modalNode = document.getElementById("js-modal");
+  let isActive = false;
+
+  $btns.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      // console.log(e.currentTarget);
+      const modal = e.currentTarget.querySelector(".js-modal");
+      let clone = modal.cloneNode(true);
+
+      //   console.log(clone);
+
+      if (!isActive) { //モーダルがアクティブでないとき
+        modalNode.appendChild(clone); //DOM挿入
+        modalNode.classList.toggle("-active");
+        isActive = !isActive;
+
+        modalNode.querySelector(".js-modal-bg").addEventListener("click", () => {
+            //イベントリスナーは複製されないので改めて設定
+            modalNode.classList.toggle("-active");
+            body[0].classList.toggle("-modal");
+            
+            setTimeout(()=> {
+              modalNode.firstElementChild.remove();
+                isActive = !isActive;
+            }, 405);            //アニメーションを待ってからDOM削除
+          });
+      } else {
+        modalNode.classList.toggle("-active");
+        isActive = !isActive;
+      }
+
+      body[0].classList.toggle("-modal");
+    });
+  });
+
+  const $bgBtns = document.querySelectorAll(".js-modal-bg");
+
+  $bgBtns.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      //   const modal = e.closest(".js-modal");
+      // console.log(modal);
+      // console.log(e.currentTarget);
+
+      //   modal.classList.toggle("-active");
+      body[0].classList.toggle("-modal");
+    });
+  });
+</script>

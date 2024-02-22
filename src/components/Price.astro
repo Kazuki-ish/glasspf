@@ -1,0 +1,89 @@
+---
+import { createClient } from 'microcms-js-sdk';
+import PriceItem from './Price__item.astro';
+
+const domain = import.meta.env.PUBLIC_microCMS_DOMAIN;
+const apiKey = import.meta.env.PUBLIC_microCMS_API_KEY;
+
+interface Item {
+  id: string;
+  name: string;
+  price: number;
+  desc: string;
+  schedule: string;
+  isBasic: boolean;
+}
+
+// microCMSのクライアントを設定
+const client = await createClient({
+  serviceDomain: domain,
+  apiKey: apiKey,
+});
+
+const priceObj =  await client.getList({
+        endpoint: 'price',
+    })
+    // .then((res) => console.log(''))
+    // .catch((err) => console.log(''));
+
+const priceList: Item = priceObj.contents;
+// console.log(priceList)
+
+const basicPlans = priceList.filter(priceList => priceList.isBasic === true);
+const optionPlans = priceList.filter(priceList => priceList.isBasic === false);
+---
+<div class="price">
+<ul class="price__list -basic">
+    <h2 class="price__plan">基本プラン</h2>
+    {basicPlans && basicPlans.map((item) => (
+        <PriceItem item={item}/>
+    ))}
+</ul>
+<div class="tri">
+    <span class="tri__line"></span>
+    <span class="tri__line"></span>
+</div>
+<ul class="price__list -option">
+    <h2 class="price__plan">追加オプション</h2>
+    {optionPlans&& optionPlans.map((item) => (
+        <PriceItem item={item} />
+    ))}
+</ul>
+
+<style lang="scss" is:global>
+    .price {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 4rem;
+        margin-top: 1rem;
+        position: relative;
+    }
+
+    .price__plan {
+        @include shadowTxt;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    .price__list {
+        &.-option .price__ttl {
+            background-color: rgba(255, 0, 227, .6);
+            border: solid 1px rgba(255, 0, 227, .4);
+        }
+    }
+    .tri {
+        @include absCenter;
+
+        &__line {
+            @include absCenter;
+            background-color: white;
+            border-radius: 9999px;
+            width: calRem(32);
+            height: 3px;
+
+            &:last-of-type{
+                transform: translate(-50%, -50%) rotate(90deg);
+            }
+        }
+    }
+</style>

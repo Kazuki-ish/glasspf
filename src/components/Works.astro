@@ -1,0 +1,88 @@
+---
+// src/pages/works.astro
+import { createClient } from 'microcms-js-sdk';
+import WorksItem from './Works__item.astro';
+
+const domain = import.meta.env.PUBLIC_microCMS_DOMAIN;
+const apiKey = import.meta.env.PUBLIC_microCMS_API_KEY;
+
+interface Item {
+  id: string;
+  title: string;
+  content: string;
+  eyecatch?: {
+    url: string;
+  };
+  tags: Array<{
+    name: string;
+  }>;
+}
+
+// microCMSのクライアントを設定
+const client = await createClient({
+  serviceDomain: domain,
+  apiKey: apiKey,
+});
+
+const worksObj =  await client.getList({
+        endpoint: 'works',
+    })
+    // .then((res) => console.log(''))
+    // .catch((err) => console.log(''));
+
+const works: Item[]  = worksObj.contents;
+// console.log(works)
+---
+
+<ul class="works-cards">
+    {works && works.map((item) => (
+        <WorksItem item={item} />
+    ))}
+</ul>
+
+
+<style lang="scss">
+  .works-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 320px);
+    margin-top: 1rem;
+    justify-content: center;
+    grid-row-gap: 2rem;
+    grid-column-gap: 2rem;
+  }
+</style>
+
+<script>
+    // import { createClient } from 'microcms-js-sdk'; //ES6
+    // const client = createClient({
+    // serviceDomain: "ishidakazuki", 
+    // apiKey: "iuMXbP60QYg5tuC1lrXIE7nO0OUBPO4bmmeU",
+    // retry: true // Retry attempts up to a maximum of two times.
+    // });
+    // console.log(client);
+
+    // client
+    // .getList({
+    //     endpoint: 'works',
+    // })
+    // .then((res) => console.log(res))
+    // .catch((err) => console.log(err));
+// import { createClient } from 'microcms-js-sdk';
+// const domain = import.meta.env.PUBLIC_microCMS_DOMAIN;
+// const apiKey = import.meta.env.PUBLIC_microCMS_API_KEY;
+
+
+// console.log(import.meta.env.microCMS_DOMAIN)
+
+// microCMSのクライアントを設定
+// const client = await createClient({
+//   serviceDomain: domain,
+//   apiKey: apiKey,
+// });
+
+// const works = client.contants;
+
+// console.log(works)
+    
+
+</script>

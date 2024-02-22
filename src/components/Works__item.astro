@@ -1,0 +1,154 @@
+---
+
+interface Item {
+  id: string;
+  title: string;
+  content: string;
+  eyecatch?: {
+    url: string;
+  };
+  tags: Array<{
+    name: string;
+  }>;
+}
+
+const item = Astro.props.item as Item;
+// console.log(item)
+---
+
+<li class="works-card">
+    <button class="works__inner js-modal-btn" id=`${item.id}` data-id=`${item.id}`>
+        <div class="works__cover">
+            {item.eyecatch && (
+                <div class="works__eyecatch">
+                    <img src={item.eyecatch.url} alt={item.title} />
+                </div>
+            )}
+            <h3 class="works__ttl">{item.title}</h3>
+            <ul class="works__tags">
+                {item.tags.map((tag) => (
+                    <li class="works__tag">{tag.name}</li>
+                ))}
+            </ul>
+        </div>
+        <div class="works__hidden">
+            <div class="works__modal js-modal" data-id=`${item.id}`>
+                <div class="works__modal__inner">
+                    <div class="works__cover">
+                        {item.eyecatch && (
+                            <div class="works__eyecatch">
+                                <img src={item.eyecatch.url} alt={item.title} />
+                            </div>
+                        )}
+                        <h3 class="works__ttl">{item.title}</h3>
+                        <ul class="works__tags">
+                            {item.tags.map((tag) => (
+                                <li class="works__tag">{`#${tag.name}`}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div class="works__txt" set:html={item.content}>
+                    </div>
+                </div>
+                <div class="works__modal-bg js-modal-bg"></div>
+            </div>
+        </div>
+    </button>
+</li>
+
+  
+</div>
+<style lang="scss" is:global>
+.works-card {
+
+}
+
+.works__inner {
+
+}
+.works__cover {
+}
+.works__eyecatch {
+    border-radius: 18px 18px 0 0;
+    overflow: hidden;
+    img {
+    aspect-ratio: 4 / 3;
+        object-fit: cover;
+    }
+}
+.works__ttl {
+    @include shadowTxt;
+    background-color: #727272;
+    font-weight: 400;
+    font-size: 1rem;
+    text-align: center;
+    padding: 2px 0;
+    border-radius: 0 0 18px 18px;
+    overflow: hidden;
+}
+.works__txt {
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+
+    h2 {
+        font-size: 1rem;
+        font-weight: 300;
+    }
+    a {
+        word-break: break-all;
+    }
+    p {
+        margin-top: .5rem;
+        text-align:  left;
+        &:nth-last-of-type(2) {
+            margin-top: 1rem;
+        }
+        &:first-of-type {
+            margin-top: 1rem;
+        }
+    }
+}
+.works__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    position: relative;
+    margin-top: .5rem;
+}
+.works__tag {
+    font-size: calRem(14);
+    color: #40E0D0;
+    // margin-top: .5rem;
+}
+
+.works__modal {
+    @include absCenter();
+    z-index: 999;
+
+  }
+  .works__modal__inner {
+    // position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 32px;
+    grid-column-gap: 2rem;
+    width: calVw(1280, 1920);
+    z-index: 999;
+  }
+  .works__modal-bg {
+    @include absCenter();
+    @include accAnim;
+    background: rgba(0, 0, 0, .6);
+    // position: fixed;
+    width: 100svw;
+    height: 100svh;
+    z-index: -999;
+  }
+  .works__hidden {
+    display: none;
+  }
+</style>
+
+<script>
+</script>

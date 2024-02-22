@@ -1,0 +1,18 @@
+---
+
+const navItem = Astro.props.item as String;
+---
+
+<div class="header__nav-item">
+    <a class="header___nav-item__link" href={`#${navItem}`}>{navItem}</a>
+</div>
+
+<style lang="scss">
+    .header___nav-item__link {
+        @include shadowTxt;
+        font-size: calRem(18);
+        line-height: 1;
+    }
+    .header__nav-item{
+    }
+</style>
