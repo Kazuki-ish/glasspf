@@ -4,7 +4,8 @@
 <footer>
     <div class="c-inner">
         <p>
-            ©︎Ishida Kazuki Designed and Developed by Ishida Kazuki
+            ©︎Ishida Kazuki <br class="c-visible-nrw">
+            Designed and Developed by Ishida Kazuki
         </p>
     </div>
 </footer>
@@ -19,6 +20,9 @@
         p {
             text-align: center;
             line-height: 1;
+            @include mq(sp) {
+                line-height: 1.5;
+            }
         }
     }
 </style>

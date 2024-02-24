@@ -27,7 +27,7 @@ const item = Astro.props.item as Item;
             <h3 class="works__ttl">{item.title}</h3>
             <ul class="works__tags">
                 {item.tags.map((tag) => (
-                    <li class="works__tag">{tag.name}</li>
+                    <li class="works__tag">#{tag.name}</li>
                 ))}
             </ul>
         </div>
@@ -43,14 +43,14 @@ const item = Astro.props.item as Item;
                         <h3 class="works__ttl">{item.title}</h3>
                         <ul class="works__tags">
                             {item.tags.map((tag) => (
-                                <li class="works__tag">{`#${tag.name}`}</li>
+                                <li class="works__tag">#{`${tag.name}`}</li>
                             ))}
                         </ul>
                     </div>
                     <div class="works__txt" set:html={item.content}>
                     </div>
                 </div>
-                <div class="works__modal-bg js-modal-bg"></div>
+
             </div>
         </div>
     </button>
@@ -103,10 +103,17 @@ const item = Astro.props.item as Item;
         text-align:  left;
         &:nth-last-of-type(2) {
             margin-top: 1rem;
+
+            @include mq(sp) {
+                margin-top: 2rem;
+            }
         }
         &:first-of-type {
             margin-top: 1rem;
         }
+    }
+    @include mq(sp) {
+        padding-top: 2rem;
     }
 }
 .works__tags {
@@ -115,6 +122,11 @@ const item = Astro.props.item as Item;
     gap: .5rem;
     position: relative;
     margin-top: .5rem;
+    
+    @include mq(sp) {
+        margin-top: .25rem;
+        gap: .25rem;
+    }
 }
 .works__tag {
     font-size: calRem(14);
@@ -126,6 +138,13 @@ const item = Astro.props.item as Item;
     @include absCenter();
     z-index: 999;
 
+    @include mq(sp) {
+        position: relative;
+        transform: translate(0, 0);
+        top: 0;
+        left: 0;
+    }
+
   }
   .works__modal__inner {
     // position: relative;
@@ -135,16 +154,27 @@ const item = Astro.props.item as Item;
     grid-column-gap: 2rem;
     width: calVw(1280, 1920);
     z-index: 999;
+    position: relative;
+
+    & .works__cover{
+        margin: auto;
+
+        img {
+            width: 100%;
+        }
+    }
+    
+    @include mq(tab) {
+        // display: block;
+    }
+    @include mq(sp) {
+        display: block;
+        width: calc(100svw - 4rem);
+        margin: auto;
+        padding: 2rem 0 4rem;
+    }
   }
-  .works__modal-bg {
-    @include absCenter();
-    @include accAnim;
-    background: rgba(0, 0, 0, .6);
-    // position: fixed;
-    width: 100svw;
-    height: 100svh;
-    z-index: -999;
-  }
+
   .works__hidden {
     display: none;
   }
