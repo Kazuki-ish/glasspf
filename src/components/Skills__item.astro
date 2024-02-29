@@ -1,0 +1,60 @@
+---
+interface Item {
+    name: string;
+    during: string;
+    desc: string;
+}
+
+const item = Astro.props.item as Item;
+---
+
+<li class="skills__item">
+    <strong>{item.name && item.name}</strong>
+    <p class="skills__item__during">{item.during && item.during}</p>
+    <p class="skills__item__desc">{item.desc && item.desc}</p>
+</li>
+
+
+<style lang="scss">
+    .skills__item{
+        display: grid;
+        grid-template-columns: 3fr 1fr 8fr;
+        grid-row-gap: 2rem;
+        grid-column-gap: 2rem;
+
+        &:nth-of-type(n + 2) {
+            margin-top: 1rem;
+        }
+
+        strong {
+            display: inline-block;
+            text-align: center;
+            font-size: calRem(18);
+        }
+        p{
+            display: inline-block;
+            // max-width: 50%;
+        }
+        &__during {
+            text-align: center;
+        }
+
+        @include mq(sp) {
+            display: block;        
+            &:nth-of-type(n + 2) {
+                margin-top: 1.5rem;
+            }
+            strong {
+                margin-right: 1rem;
+                line-height: calRem(18);
+            }
+            .skills__item__during {
+                line-height: calRem(18);
+            }
+            .skills__item__desc {
+                margin-top: calRem(6);
+            }
+        }
+    }
+
+</style>

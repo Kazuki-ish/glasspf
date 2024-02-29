@@ -3,9 +3,11 @@
 ---
 
 <div class="modal" id="js-modal">
-
-    <div class="works__modal-bg js-modal-bg"></div>
+  <button class="modal__sp-btn" id="js-modal-close" aria-hidden="true">
+    &times;
+  </button>
 </div>
+<div class="modal-bg js-modal-bg"></div>
 
 <style lang="scss">
     .modal {
@@ -17,7 +19,6 @@
       z-index: 999;
       position: fixed;
       width: 100svw;
-      height: 100svh;
   
       &.-active {
         visibility: visible;
@@ -31,10 +32,11 @@
       @include mq(sp) {
         // top: 0;
         overflow-y: scroll;
+        height: 100vh;
         
       }
     }
-    .works__modal-bg {
+    .modal-bg {
         @include absCenter();
         @include accAnim;
         background: rgba(0, 0, 0, .6);
@@ -42,20 +44,32 @@
         position: fixed;
         width: 100svw;
         height: 100svh;
-        z-index: -999;
+        z-index: 100;
         visibility: hidden;
         opacity: 0;
 
-        .-active & {
+        &.-active {
             visibility: visible;
             opacity: 1;
         }
+    }
+    .modal__sp-btn {
+      position: absolute;
+      color: white;
+      font-size: calRem(48);
+      right: calRem(8);
+      top: calc(4rem / 2 - 2rem);
+      line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, .8));
+      z-index: 999;
     }
 </style>
 <script>
   const $btns = document.querySelectorAll(".js-modal-btn");
   const body = document.getElementsByTagName("body");
   const modalNode = document.getElementById("js-modal");
+  const $bg = document.querySelector(".js-modal-bg");
+  const $closeBtn = document.getElementById("js-modal-close");
   let isActive = false;
 
   $btns.forEach((el) => {
@@ -69,6 +83,7 @@
       if (!isActive) { //モーダルがアクティブでないとき
         modalNode.appendChild(clone); //DOM挿入
         modalNode.classList.toggle("-active");
+        $bg?.classList.add("-active");
         isActive = !isActive;
 
         // modalNode.querySelector(".js-modal-bg").addEventListener("click", () => {
@@ -90,25 +105,38 @@
     });
   });
 
-  const $bgBtns = document.querySelectorAll(".js-modal-bg");
+  $bg.addEventListener("click", (e) => {
 
-  $bgBtns.forEach((el) => {
-    el.addEventListener("click", (e) => {
+      modalNode.classList.remove("-active");
+      e.target.classList.remove("-active");
 
-      const modal = e.currentTarget.querySelector(".js-modal");
-            //イベントリスナーは複製されないので改めて設定
-            modalNode.classList.toggle("-active");
-
-            setTimeout(()=> {
-              modalNode.querySelector(".js-modal").remove();
-                isActive = !isActive;
-            }, 405);            //アニメーションを待ってからDOM削除
+      setTimeout(()=> {
+        modalNode.querySelector(".js-modal").remove();
+          isActive = !isActive;
+      }, 405);            //アニメーションを待ってからDOM削除
       //   const modal = e.closest(".js-modal");
       // console.log(modal);
       // console.log(e.currentTarget);
 
       //   modal.classList.toggle("-active");
     body[0].classList.remove("-modal");
-    });
+  });
+
+  $closeBtn.addEventListener("click", () => {
+    console.log($closeBtn);
+
+      modalNode.classList.remove("-active");
+      $bg.classList.remove("-active");
+
+      setTimeout(()=> {
+        modalNode.querySelector(".js-modal").remove();
+          isActive = !isActive;
+      }, 405);            //アニメーションを待ってからDOM削除
+      //   const modal = e.closest(".js-modal");
+      // console.log(modal);
+      // console.log(e.currentTarget);
+
+      //   modal.classList.toggle("-active");
+    body[0].classList.remove("-modal");
   });
 </script>

@@ -1,0 +1,83 @@
+---
+import SkillsItem from './Skills__item.astro';
+
+
+interface Skill {
+    name: string;
+    during: string;
+    desc: string;
+}
+
+const skills: Skill[] = [
+    {
+        name: "javascript",
+        during: "2年",
+        desc: "プロパティの操作やクラス構文、async, awaitを使った非同期通信まで。まだまだ学んでいきたいです"
+    },
+    {
+        name: "PHP",
+        during: "2年",
+        desc: "Wordpressで使用していました"
+    },
+    {
+        name: "SASS",
+        during: "2年",
+        desc: "SCSSをメインとして使用。フレームワークを使うと忘れがちですがFLOCCSで書くように心がけています"
+    },
+    {
+        name: "TypeScript",
+        during: "最近",
+        desc: "型定義の方法から勉強中……"
+    },
+    {
+        name: "Vue.js",
+        during: "1年",
+        desc: "Transitionやref、OptionsAPIの書き味が好きです"
+    },
+    {
+        name: "Nuxt.js",
+        during: "1年",
+        desc: "コトノハで使っていますが、今後nuxt3へも対応していきたいです"
+    },
+    {
+        name: "Astro.js",
+        during: "最近",
+        desc: "このポートフォリオ、直近のLPで使用。Astro islandでvueを混在させられて気持ちいいです"
+    },
+    {
+        name: "firebase",
+        during: "最近",
+        desc: "リファレンス読むとやりたいこと大体書いてありたすかります。コトノハではモジューラー形式のv9を使用"
+    },
+    {
+        name: "p5.js",
+        during: "最近",
+        desc: "このポートフォリオの背景で使用。今後はThree.jsやLottieにも手を出していきたいです"
+    },
+
+    {
+        name: "GSAP",
+        during: "最近",
+        desc: "ロード画面を制作した際に使用。アニメーションライブラリとして最初に触りました"
+    },
+    {
+        name: "AfterEffects expression",
+        during: "1年",
+        desc: "共有するテンプレートの作成時などに使用。座布団の余白を自動計算させたりで便利です"
+    },
+]
+---
+
+<div class="skills">
+    <ul class="skills__items">
+        {skills && skills.map((item) => (
+            <SkillsItem item={item} />
+        ))}
+    </ul>
+</div>
+
+<style lang="scss">
+    .skills__items {
+        padding-top: 2rem;
+    }
+</style>
