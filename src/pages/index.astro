@@ -24,31 +24,31 @@ const navItems = ["About me", "Works", "Skills"]
 		<!-- <a href="https://twitter.com/kazukiatjp" class="x-link">Ishida Kazuki@X</a> -->
 		<Bg />
 		<section class="About" id={navItems[0]}>
-			<div class="c-inner -small">
+			<div class="l-inner -small">
 				<h2 class=About__ttl>{navItems[0]}</h2>
 				<About />
 			</div>
 		</section>
 		<section class="Works" id={navItems[1]}>
-			<div class="c-inner">
+			<div class="l-inner">
 				<h2 class=Works__ttl>{navItems[1]}</h2>
 				<Works />
 			</div>
 		</section>
 		<!-- <section class="Price" id={navItems[2]}>
-			<div class="c-inner">
+			<div class="l-inner">
 				<h2 class=Price__ttl>{navItems[2]}</h2>
 				<Price />
 			</div>
 		</section>
 		<section class="Contact" id={navItems[3]}>
-			<div class="c-inner -small">
+			<div class="l-inner -small">
 				<h2 class=Contact__ttl>{navItems[3]}</h2>
 				<Contact />
 			</div>
 		</section> -->
 		<section class="Skills" id={navItems[2]}>
-			<div class="c-inner">
+			<div class="l-inner">
 				<h2 class=Works__ttl>{navItems[2]}</h2>
 				<Skills />
 			</div>
@@ -89,7 +89,7 @@ const navItems = ["About me", "Works", "Skills"]
 		z-index: 999;
 	}
 	section{
-		max-width: 1344px;
+		max-width: 1152px;
 		margin: 0 auto;
 
 		&:nth-of-type(n + 2) {
@@ -103,7 +103,7 @@ const navItems = ["About me", "Works", "Skills"]
 			line-height:1;
 		}
 	}
-	.c-inner {
+	.l-inner {
 		@include glassBg();
 		padding: calRem(16) calRem(32) calRem(38);
 		margin: auto;
@@ -113,7 +113,7 @@ const navItems = ["About me", "Works", "Skills"]
 		}
 
 		&.-small {
-			max-width: 668px;
+			max-width: 582px;
 			margin: auto;
 			@include mq(sp) {
 				max-width: calc(100svw - 2rem);

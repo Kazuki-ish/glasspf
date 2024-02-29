@@ -22,8 +22,8 @@
   background: rgba(0, 0, 0, 0.4);
   border-radius: 16px;
   box-shadow: 4px 4px 24px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(5.8px) brightness(2);
-  -webkit-backdrop-filter: blur(5.8px);
+  backdrop-filter: blur(6px) brightness(2);
+  -webkit-backdrop-filter: blur(6px) brightness(2);
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 @mixin shadowTxt {
