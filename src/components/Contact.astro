@@ -22,6 +22,7 @@
         @include accAnim;
         background-color: rgba(255, 255, 255, .3);
         backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         border: solid 1px white;
         border-radius: 20px;
         display: flex;
@@ -43,6 +44,7 @@
             line-height: 1;
             &:hover {
                 filter: drop-shadow(0 0 8px rgba(255, 255, 255, .8));
+                -webkit-filter: drop-shadow(0 0 8px rgba(255, 255, 255, .8));
             }
         }
         &:hover {

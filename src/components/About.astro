@@ -70,6 +70,21 @@ import X from '../imgs/x-logo-white.png';
         justify-content: center;
         align-items: center;
         gap: 2rem;
+
+        a {
+            @include accAnim(filter);
+            &:hover {
+                filter: drop-shadow(0 0 3px #86DEFF) drop-shadow(0 0 6px #86DEFF);
+                -webkit-filter: drop-shadow(0 0 3px #FF91F3) drop-shadow(0 0 6px #FF91F3);
+            }
+
+            &:first-of-type {
+                &:hover{
+                    filter: drop-shadow(0 0 3px #FF91F3) drop-shadow(0 0 6px #FF91F3);
+                    -webkit-filter: drop-shadow(0 0 3px #FF91F3) drop-shadow(0 0 6px #FF91F3);
+                }
+            }
+        }
     }
     .about__links__ico {
         display: block;

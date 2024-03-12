@@ -4,12 +4,14 @@ const colors = ["#FF91F3", "#86DEFF", "#FFDDA7"];
 
 let sketch = function (p) {
   let dots = [];
-  const numOfDots = 14;
+  let numOfDots = 16;
 
   p.setup = function () {    
     p.createCanvas(p.windowWidth, p.windowHeight);
     p.rectMode(p.CENTER);
     p.noStroke();
+
+    p.windowWidth < 768 ? numOfDots = 6 : {};
     for (let i = 0; i < numOfDots; i++) {
       dots.push(new Dot(p.random(p.width), p.random(p.height)));
     }

@@ -67,6 +67,16 @@ const item = Astro.props.item as Item;
 
 }
 .works__cover {
+    @include accAnim;
+
+    &:hover {
+        filter: drop-shadow(0 0 12px #FFDDA7);
+        -webkit-filter: drop-shadow(0 0 12px #FFDDA7);
+    }
+    .modal & {
+        filter: none;
+        -webkit-filter: none;
+    }
 }
 .works__eyecatch {
     border-radius: 18px 18px 0 0;
@@ -74,6 +84,12 @@ const item = Astro.props.item as Item;
     img {
         aspect-ratio: 4 / 3;
         object-fit: cover;
+
+    }
+}
+.modal .works__eyecatch {
+    img:hover{
+        transform: scale(1);
     }
 }
 .works__ttl {

@@ -35,7 +35,7 @@ const navItems = ["About me", "Works", "Skills"]
 				<Works />
 			</div>
 		</section>
-		<!-- <section class="Price" id={navItems[2]}>
+		{/** <section class="Price" id={navItems[2]}>
 			<div class="l-inner">
 				<h2 class=Price__ttl>{navItems[2]}</h2>
 				<Price />
@@ -46,10 +46,10 @@ const navItems = ["About me", "Works", "Skills"]
 				<h2 class=Contact__ttl>{navItems[3]}</h2>
 				<Contact />
 			</div>
-		</section> -->
+		</section>  */}
 		<section class="Skills" id={navItems[2]}>
 			<div class="l-inner">
-				<h2 class=Works__ttl>{navItems[2]}</h2>
+				<h2 class=Skills__ttl>{navItems[2]}</h2>
 				<Skills />
 			</div>
 		</section>
@@ -121,10 +121,10 @@ const navItems = ["About me", "Works", "Skills"]
 		}
 	}
 	section.About {
-		margin-top: calVw(783, 1920);
+		margin-top: calVw(480, 1920);
 
 		@include mq(sp) {
-				margin-top: calVw(560);
+				margin-top: calVw(320);
 		}
 	}
 
