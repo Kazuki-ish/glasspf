@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "fmt": "prettier --config .prettierrc.mjs --write 'src/**/*.astro'"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.4",
@@ -18,6 +19,8 @@
   },
   "devDependencies": {
     "p5": "^1.9.0",
+    "prettier": "^3.2.5",
+    "prettier-plugin-astro": "^0.13.0",
     "sass": "^1.71.0",
     "three": "^0.162.0"
   }
