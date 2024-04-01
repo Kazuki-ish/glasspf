@@ -1,3 +1,4 @@
+// @ts-nocheck
 import p5 from "p5";
 
 const colors = ["#FF91F3", "#86DEFF", "#FFDDA7"];
