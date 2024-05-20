@@ -32,12 +32,13 @@ import X from '../imgs/x-logo-white.png';
         alt="githubリンク / 石田一樹" format="png"
     />
     </a>
-    <a href="https://twitter.com/kazukiatjp" class="about__links__ico -x">
-        <Image src={X}
-        height="32"
-        alt="Xリンク / 石田一樹" format="png"
-    />
-    </a>
+    { //<a href="https://twitter.com/kazukiatjp" class="about__links__ico -x">
+    //    <Image src={X}
+    //    height="32"
+    //    alt="Xリンク / 石田一樹" format="png"
+    ///>
+    //</a> 
+    }
 </div>
 
 <style lang="scss">
@@ -72,7 +73,7 @@ import X from '../imgs/x-logo-white.png';
         gap: 2rem;
 
         a {
-            @include accAnim(filter);
+            @include accAnim();
             &:hover {
                 filter: drop-shadow(0 0 3px #86DEFF) drop-shadow(0 0 6px #86DEFF);
                 -webkit-filter: drop-shadow(0 0 3px #FF91F3) drop-shadow(0 0 6px #FF91F3);

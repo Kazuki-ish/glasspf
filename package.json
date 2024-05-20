@@ -5,10 +5,11 @@
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
-    "build": "astro check&&build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "fmt": "prettier --config .prettierrc.mjs --write 'src/**/*.astro'"
+    "fmt": "prettier --config .prettierrc.mjs --write 'src/**/*.astro'",
+    "deploy": "astro build && netlify deploy --dir dist --prod"
   },
   "dependencies": {
     "@astrojs/check": "^0.5.4",
