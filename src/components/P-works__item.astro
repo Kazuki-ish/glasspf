@@ -1,0 +1,69 @@
+---
+import { OmitIndexSignature } from "../../node_modules/astro/dist/type-utils";
+
+interface Item {
+  id: string;
+  title: string;
+  content: string;
+  eyecatch?: {
+    url: string;
+  };
+  tags: Array<{
+    name: string;
+  }>;
+}
+
+const item = Astro.props.item as Item;
+const index = Astro.props.index as number + 1;
+// console.log(item)
+---
+
+<li class="works-card">
+    <button class="works__inner js-modal-btn" id=`${item.id}` data-id=`${item.id}`>
+        <div class="works__cover">
+            {item.eyecatch && (
+                <div class="works__eyecatch">
+                    <img src={item.eyecatch.url} alt={item.title} />
+                </div>
+            )}
+            <h3 class="works__ttl">#{index} {item.title}</h3>
+            <ul class="works__tags">
+                {item.tags.map((tag) => (
+                    <li class="works__tag">#{tag.name}</li>
+                ))}
+            </ul>
+        </div>
+        <div class="works__hidden">
+            <div class="works__modal js-modal" data-id=`${item.id}`>
+                <div class="works__modal__inner">
+                    <div class="works__cover">
+                        {item.eyecatch && (
+                            <div class="works__eyecatch">
+                                <img src={item.eyecatch.url} alt={item.title} />
+                            </div>
+                        )}
+                        <h3 class="works__ttl">{item.title}</h3>
+                        <ul class="works__tags">
+                            {item.tags.map((tag) => (
+                                <li class="works__tag">#{`${tag.name}`}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <div class="works__txt" set:html={item.content}>
+                    <div class="works__modal__bg"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </button>
+</li>
+
+  
+</div>
+<style lang="scss" is:global>
+
+</style>
+
+<script>
+</script>

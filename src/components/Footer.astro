@@ -1,10 +1,11 @@
 ---
+
 ---
 
 <footer>
     <div class="l-inner">
         <p>
-            ©︎Ishida Kazuki<span class="c-visible-wide"> | </span><br class="c-visible-nrw">
+            ©︎Ishida Kazuki <span id="current-year"> </span><span class="c-visible-wide"> | </span><br class="c-visible-nrw">
             Thank you for visiting this website.
         </p>
     </div>
@@ -26,3 +27,14 @@
         }
     }
 </style>
+
+<script >
+    // 現在の年を取得
+    const currentYear = new Date().getFullYear();
+    
+    // 要素が存在する場合にのみ更新
+    const yearElement = document.getElementById("current-year");
+        if (yearElement) {
+            yearElement.textContent = ` ${currentYear}`;
+        }
+</script>

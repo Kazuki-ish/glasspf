@@ -1,7 +1,7 @@
 ---
 // src/pages/works.astro
 import { createClient } from 'microcms-js-sdk';
-import WorksItem from './Works__item.astro';
+import WorksItem from './P-works__item.astro';
 
 const domain = import.meta.env.PUBLIC_microCMS_DOMAIN;
 const apiKey = import.meta.env.PUBLIC_microCMS_API_KEY;
@@ -31,15 +31,15 @@ const worksObj =  await client.getList({
     // .catch((err) => console.log(''));
 
 const works: Item[]  = worksObj.contents;
-// console.log(works.length)
+// console.log(works)
+
 for (let i = works.length - 1; i >= 0; i--) {
   // console.log(i);
-  if(works[i].tags[0].name !== "Web制作"){
+  if(works[i].tags[0].name !== "個人開発"){
     works.splice(i, 1);
   }
 }
 
-// console.log(works.length)
 ---
 
 <ul class="works-cards">

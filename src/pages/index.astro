@@ -4,6 +4,8 @@ import Layout from '../layouts/Layout.astro';
 import Bg from '../components/Bg.astro';
 import Header from'../components/Header.astro';
 import Works from '../components/Works.astro';
+import Personal from '../components/P-works.astro';
+import Video from '../components/V-works.astro'
 import About from '../components/About.astro';
 import Price from '../components/Price.astro';
 import Contact from '../components/Contact.astro';
@@ -13,7 +15,7 @@ import Modal from '../components/Modal.astro';
 import Scroll from "../components/ScrollModule.astro";
 
 
-const navItems = ["About me", "Works", "Skills"]
+const navItems = ["About me", "Works", "Personal Works", "Video Works", "Skills"]
 ---
 
 <Layout title="石田 一樹 / Ishida Kazuki">
@@ -35,6 +37,18 @@ const navItems = ["About me", "Works", "Skills"]
 				<Works />
 			</div>
 		</section>
+		<section class="PersonalWorks" id={navItems[2]}>
+			<div class="l-inner">
+				<h2 class=Works__ttl>{navItems[2]}</h2>
+				<Personal />
+			</div>
+		</section>
+		<section class="VideoWorks" id={navItems[3]}>
+			<div class="l-inner">
+				<h2 class=Works__ttl>{navItems[3]}</h2>
+				<Video />
+			</div>
+		</section>
 		{/** <section class="Price" id={navItems[2]}>
 			<div class="l-inner">
 				<h2 class=Price__ttl>{navItems[2]}</h2>
@@ -47,9 +61,9 @@ const navItems = ["About me", "Works", "Skills"]
 				<Contact />
 			</div>
 		</section>  */}
-		<section class="Skills" id={navItems[2]}>
+		<section class="Skills" id={navItems[4]}>
 			<div class="l-inner">
-				<h2 class=Skills__ttl>{navItems[2]}</h2>
+				<h2 class=Skills__ttl>{navItems[4]}</h2>
 				<Skills />
 			</div>
 		</section>

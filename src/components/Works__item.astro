@@ -1,4 +1,5 @@
 ---
+import { OmitIndexSignature } from "../../node_modules/astro/dist/type-utils";
 
 interface Item {
   id: string;
@@ -13,6 +14,7 @@ interface Item {
 }
 
 const item = Astro.props.item as Item;
+const index = Astro.props.index as number + 1;
 // console.log(item)
 ---
 
@@ -24,7 +26,7 @@ const item = Astro.props.item as Item;
                     <img src={item.eyecatch.url} alt={item.title} />
                 </div>
             )}
-            <h3 class="works__ttl">{item.title}</h3>
+            <h3 class="works__ttl">#{index} {item.title}</h3>
             <ul class="works__tags">
                 {item.tags.map((tag) => (
                     <li class="works__tag">#{tag.name}</li>
@@ -49,6 +51,7 @@ const item = Astro.props.item as Item;
                     </div>
                     <div class="works__txt" set:html={item.content}>
                     </div>
+                    <div class="works__modal__bg"></div>
                 </div>
 
             </div>
@@ -94,7 +97,7 @@ const item = Astro.props.item as Item;
 }
 .works__ttl {
     @include shadowTxt;
-    background-color: #727272;
+    background-color: #4D4D4D;
     font-weight: 400;
     font-size: 1rem;
     text-align: center;
@@ -190,7 +193,20 @@ const item = Astro.props.item as Item;
         padding: 4rem 0 4rem;
     }
   }
+  .works__modal__bg {
+    @include mq(tab) {
+        @include glassBg();
+        @include absCenter();
+        backdrop-filter: blur(6px);
+        background: rgba(0, 0, 0, 0.6);
+        border: 1px solid black;
+        width: calc(100% + 2rem);
+        height: calc(100% + 4rem);
+        opacity: 1;
+        z-index: -1;
+    }
 
+  }
   .works__hidden {
     display: none;
   }
