@@ -1,5 +1,5 @@
 ---
-import WorksItem from './P-works__item.astro';
+import WorksItem from './Works__item.astro';
 
 const works = Astro.props.items;
 
@@ -9,7 +9,7 @@ const filteredWorks = works.filter(work => work.tags[0].name == "個人開発");
 
 <ul class="works-cards">
     {filteredWorks && filteredWorks.map((item, index) => (
-        <WorksItem item={item} index={works.length - (index + 1)}/>
+        <WorksItem item={item} index={filteredWorks.length - (index + 1)}/>
     ))}
 </ul>
 

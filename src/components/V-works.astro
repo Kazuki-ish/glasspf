@@ -11,7 +11,7 @@ const filteredWorks = works.filter(work => work.tags[0].name == "映像制作");
 
 <ul class="works-cards">
     {filteredWorks && filteredWorks.map((item, index) => (
-        <WorksItem item={item} index={works.length - (index + 1)}/>
+        <WorksItem item={item} index={filteredWorks.length - (index + 1)}/>
     ))}
 </ul>
 

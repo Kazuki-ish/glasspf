@@ -7,12 +7,12 @@ const works = Astro.props.items;
 // シャローコピーを作成して格納
 const filteredWorks = works.filter(work => work.tags[0].name === "Web制作");
 
-// console.log(works.length)
+console.log(filteredWorks.length)
 ---
 
 <ul class="works-cards">
     {filteredWorks && filteredWorks.map((item, index) => (
-        <WorksItem item={item} index={works.length - (index + 1)}/>
+        <WorksItem item={item} index={filteredWorks.length - (index + 1)}/>
     ))}
 </ul>
 

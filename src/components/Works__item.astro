@@ -26,7 +26,7 @@ const index = Astro.props.index as number + 1;
                     <img src={item.eyecatch.url} alt={item.title} />
                 </div>
             )}
-            <h3 class="works__ttl">#{index} {item.title}</h3>
+            <h3 class="works__ttl">#{index} | {item.title}</h3>
             <ul class="works__tags">
                 {item.tags.map((tag) => (
                     <li class="works__tag">#{tag.name}</li>
@@ -103,6 +103,7 @@ const index = Astro.props.index as number + 1;
     text-align: center;
     padding: 2px 0;
     border-radius: 0 0 18px 18px;
+    letter-spacing: 0.025em;
     overflow: hidden;
 }
 .works__txt {
