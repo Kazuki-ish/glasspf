@@ -1,4 +1,5 @@
 ---
+import { createClient } from 'microcms-js-sdk';
 import Layout from '../layouts/Layout.astro';
 // import ImgOpt from '../components/ImgOpt.astro';
 import Bg from '../components/Bg.astro';
@@ -13,6 +14,39 @@ import Skills from '../components/Skills.astro';
 import Footer from '../components/Footer.astro';
 import Modal from '../components/Modal.astro';
 import Scroll from "../components/ScrollModule.astro";
+
+const domain = import.meta.env.PUBLIC_microCMS_DOMAIN;
+const apiKey = import.meta.env.PUBLIC_microCMS_API_KEY;
+
+// microCMSのクライアントを設定
+const client = await createClient({
+  serviceDomain: domain,
+  apiKey: apiKey,
+});
+
+interface Item {
+  id: string;
+  title: string;
+  content: string;
+  eyecatch?: {
+    url: string;
+  };
+  tags: Array<{
+    name: string;
+  }>;
+}
+
+const worksObj =  await client.getList({
+        endpoint: 'works',
+    })
+    // .then((res) => console.log(''))
+    // .catch((err) => console.log(''));
+
+const works: Item[]  = worksObj.contents;
+// console.log(works)
+
+    // .then((res) => console.log(''))
+    // .catch((err) => console.log(''));
 
 
 const navItems = ["About me", "Works", "Personal Works", "Video Works", "Skills"]
@@ -34,19 +68,19 @@ const navItems = ["About me", "Works", "Personal Works", "Video Works", "Skills"
 		<section class="Works" id={navItems[1]}>
 			<div class="l-inner">
 				<h2 class=Works__ttl>{navItems[1]}</h2>
-				<Works />
+				<Works items={works}/>
 			</div>
 		</section>
 		<section class="PersonalWorks" id={navItems[2]}>
 			<div class="l-inner">
 				<h2 class=Works__ttl>{navItems[2]}</h2>
-				<Personal />
+				<Personal items={works}/>
 			</div>
 		</section>
 		<section class="VideoWorks" id={navItems[3]}>
 			<div class="l-inner">
 				<h2 class=Works__ttl>{navItems[3]}</h2>
-				<Video />
+				<Video items={works} />
 			</div>
 		</section>
 		{/** <section class="Price" id={navItems[2]}>

@@ -1,49 +1,14 @@
 ---
-// src/pages/works.astro
-import { createClient } from 'microcms-js-sdk';
 import WorksItem from './P-works__item.astro';
 
-const domain = import.meta.env.PUBLIC_microCMS_DOMAIN;
-const apiKey = import.meta.env.PUBLIC_microCMS_API_KEY;
+const works = Astro.props.items;
 
-interface Item {
-  id: string;
-  title: string;
-  content: string;
-  eyecatch?: {
-    url: string;
-  };
-  tags: Array<{
-    name: string;
-  }>;
-}
-
-// microCMSのクライアントを設定
-const client = await createClient({
-  serviceDomain: domain,
-  apiKey: apiKey,
-});
-
-const worksObj =  await client.getList({
-        endpoint: 'works',
-    })
-    // .then((res) => console.log(''))
-    // .catch((err) => console.log(''));
-
-const works: Item[]  = worksObj.contents;
-// console.log(works)
-
-for (let i = works.length - 1; i >= 0; i--) {
-  // console.log(i);
-  if(works[i].tags[0].name !== "個人開発"){
-    works.splice(i, 1);
-  }
-}
+const filteredWorks = works.filter(work => work.tags[0].name == "個人開発");
 
 ---
 
 <ul class="works-cards">
-    {works && works.map((item, index) => (
+    {filteredWorks && filteredWorks.map((item, index) => (
         <WorksItem item={item} index={works.length - (index + 1)}/>
     ))}
 </ul>
